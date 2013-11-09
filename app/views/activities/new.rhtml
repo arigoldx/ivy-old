@@ -1,0 +1,7 @@
+<h1>new activity</h1><br />
+<br />
+<% form_for(:activity, :url => activities_path) do |f| %>
+  <b>name</b><br /><%= f.text_field :name %><br />
+  <br />
+  <%= submit_tag "create" %>
+<% end %>

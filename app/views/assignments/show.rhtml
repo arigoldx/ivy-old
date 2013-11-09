@@ -1,0 +1,15 @@
+<h2><%=h @assignment.name %></h2><br />
+<%= link_to '[edit]', edit_assignment_path(@assignment) %><br />
+<br />
+<b>grading type</b>: <%= @assignment.grading_type_text %><br />
+<br />
+<% if @assignment.grading_type == 2 %>
+<b>min grade: </b><%= @assignment.min_grade %><br />
+<br />
+<b>max grade: </b><%= @assignment.max_grade %><br />
+<br />
+<% end %>
+<b><%= link_to_function "description", "Element.toggle('description')" %></b>
+<div id="description" style="display:none">
+  <%= @assignment.description %>
+</div>

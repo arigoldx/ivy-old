@@ -1,0 +1,79 @@
+* when editing an assigment, the grading type does not default to what has already been set in the database.
+
+* need to generate a different view depending upon how the view is called.
+  for example, if we're trying to create a new assignment_log VIA a course then we need not specify what course
+  is being used.  if, however, we're trying to create a new assignment_log from the assignments listing or
+  assignment_log listing then we DO need to include a course field.
+  this might be worked around (elegantly) by specifying the course _before_ calling 'new'.
+
+* provide archiving of plans in addition to deleting
+
+* all strings are varchar(255).
+  1 - does varchar(255) have significant performance improvements to varchar(100) (etc etc)
+  2 - change em?
+
+* add groupings to lesson and assignments.  should be able to:
+  - add/remove to groups
+  - create with grouping
+
+** need to be able to create assignment_logs via existent lessons - for due dates and repeating assignments, etc.
+   so there could be a dropdown with something like "due on lesson of <drop down>"
+
+* ? highlight unfinished work in lesson/page
+
+* Applications/Aquamacs Emacs.app/Contents/Resources/site-lisp/edit-modes/emacs-rails
+directory where ror mode is defined, etc.  contact developer regarding error for html sexp matching
+
+* should probably not show students in attendance list if they've been marked absent
+
+* good non-ferreted searching from ryanB
+http://railsforum.com/viewtopic.php?id=11819
+
+* deep searching
+
+ferret and acts_as ferret.  fancy indexed, searching.
+both are installed but not being used yet for the Big Reason - is the technology necessary?
+
+* ajaxy pagination:
+http://webonrails.wordpress.com/2006/08/16/ajax-pagination-links-create-pagination-links-with-link_to_remote/
+http://railsontherun.com/2007/9/27/ajax-pagination-in-less-than-5-minutes
+http://errtheblog.com/post/929
+http://errtheblog.com/post/4791
+
+* when editing plans, need to be able to change date
+
+* when creating plans, need to be able to do it per grade
+
+* run validation checks when working with lessons - you should not be
+  able to make the mistake of entering data for a lesson on date X when
+  you really should be entering it for date Y.  also, you should not be
+  able to chronicle the same activity for the same lesson.
+
+* add periods to lessons?
+
+* better pagination - start on todays date and not just "next" and
+ "previous but "1 .. 2 .. 3 ..".
+
+* add 'delete' 'edit' to coursenotes & ajax
+
+* default room for edit lesson sticks to 306.. should change with edits.
+
+* put lesson_id in session for ease of editing coursenotes (to redirect
+ to that lesson) - in fact, the routing is not so good now.. if, in
+ working on a lesson, you edit a coursenote, it puts you back to that
+ courses pages, not the lesson page.
+
+* search for students by name (auto complete
+
+* check validity on lesson creation
+
+* provide group features on lessons
+
+* attendance for attendance, not chronicles
+
+* merging activities.  as organizing tool.  maybe "ewe" and "conducting"
+  can also be categorized as something else.  maybe cross categorizing.
+
+* in order to move around pages easier, a ring of recently viewed pages
+  could be kept which will make returning to pages after edits better,
+  and whatever else comes up.

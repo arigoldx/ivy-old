@@ -1,0 +1,9 @@
+<h1>new assignment</h1><br />
+<br />
+
+<%= error_messages_for :assignment %>
+
+<% form_for(:assignment, :url => assignments_path) do |form| %>
+  <%= render :partial => "form", :locals => {:form => form} %>
+  <%= submit_tag "create" %>
+<% end %>

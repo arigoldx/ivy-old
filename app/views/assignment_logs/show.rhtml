@@ -1,0 +1,23 @@
+<% title(@assignment_log.course.full_name + " : " + @assignment_log.assignment.name) %>
+
+<h1><%= link_to @assignment_log.course.full_name, course_path(@assignment_log.course) %> :
+<%= link_to @assignment_log.assignment.name, assignment_path(@assignment_log.assignment) %></h1><br />
+<br />
+
+<h2>
+due date: <%=h @assignment_log.due_date.to_s(:day_month_date).downcase %><br />
+min grade: <%=h @assignment_log.assignment.min_grade %><br />
+max grade: <%=h @assignment_log.assignment.max_grade %><br />
+</h2>
+<br />
+
+<% form_for :assignment_log,
+            :url => assignment_logs_path do |form| %>
+   <%= form.hidden_field :course_id, :value => @assignment_log.course_id %>
+   <%= form.hidden_field :assignment_id, :value => @assignment_log.assignment_id %>
+   <%= form.hidden_field :due_date, :value => @assignment_log.due_date %>
+   grade: <%= form.text_field :grade, :size => 3 %><br /><br />
+   <%= select_tag ("student[]", options_from_collection_for_select(@assignment_log.course.students.find(:all, :order => "first_name"), :id, :name_first_last), :multiple => "true", id => "student_ids" ) %><br />
+   <br />
+   <%= submit_tag "submit" %>
+<% end %>

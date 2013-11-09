@@ -1,0 +1,7 @@
+<h2>edit <%= @courseplan.course.name + @courseplan.course.section %> courseplan of <%= @courseplan.date.strftime( "%A, %B %d" ).downcase %></h2>
+<% form_for :courseplan,
+            :url => courseplan_path,
+            :html => { :method => :put } do |form| %>
+<%= form.text_area :text, :rows => 20, :cols => 60 %>
+<%= submit_tag "submit changes" %>
+<% end %>

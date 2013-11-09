@@ -1,0 +1,7 @@
+development:
+  adapter: mysql 
+  host: localhost
+  database: ivy_development
+  username: root
+  password: ushamimi
+  socket: /tmp/mysql.sock

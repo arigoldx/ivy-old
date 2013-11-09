@@ -1,0 +1,32 @@
+<h1>create lessons for <%= link_to @course.full_name, course_path(@course)  %></h1><br />
+<br />
+
+<h2><%= link_to_function "create multiple lessons", "Element.toggle('batch_create')" %></h2>
+<div id="batch_create" style="display:none">
+<% form_for :lesson, :url => lessons_path do |f| %><br />
+  <%= f.hidden_field 'course_id', :value => @course.id %>
+  on every,  <%= select_tag 'day_of_week', days_of_week_options_for_select %><br />
+  starting on, <%= text_field_tag 'start_date', Date.today.to_s(:short)  %><br/>
+  and ending on, <%= text_field_tag 'end_date', "5 June" %><br />
+  starting at <%= f.text_field 'start_time_string', :value => Time.now.to_s(:hour_minute_ampm)  %><br />
+  and ending at <%= f.text_field 'end_time_string', :value => Time.now.to_s(:hour_minute_ampm)  %><br />
+  in room, <%= f.text_field 'room', :value => 306 %><br />
+  <br />
+  <%= submit_tag "create a batch of lessons" %>
+<% end %>
+<br />
+</div>
+
+<br />
+<h2><%= link_to_function "create one lesson", "Element.toggle('single_create')" %></h2>
+<div id="single_create" style="display:none">
+<% form_for :lesson, :url => lessons_path do |f| %><br />
+  <%= f.hidden_field 'course_id', :value => @course.id %>
+  date <%= f.text_field 'date_string', :value => Date.today.to_s(:short)  %><br />
+  start time <%= f.text_field 'start_time_string', :value => Time.now.to_s(:hour_minute_ampm)  %><br />
+  end time <%= f.text_field 'end_time_string', :value => Time.now.to_s(:hour_minute_ampm)  %><br />
+  room <%= f.text_field 'room', :value => 306 %><br />
+  <br />
+  <%= submit_tag "create a single lesson" %>
+<% end %>
+</div>

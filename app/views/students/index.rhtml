@@ -1,0 +1,16 @@
+<p><h1>listing students</h1><%= spinner %><br />
+<%= link_to '[new student]', new_student_path %>
+<br /><br />
+filter on student's first name:
+<%= text_field_tag("query", params['query'], :size => 10 ) %>
+<%= observe_field 'query',  :frequency => 2,
+         :update => 'table',
+         :before => "Element.show('spinner')",
+         :success => "Element.hide('spinner')",
+         :url => { :action => 'index' },
+         :method => 'get',
+         :with => 'query' %>
+<div id="table">
+  <%= render :partial => "list" %>
+</div>
+<br />

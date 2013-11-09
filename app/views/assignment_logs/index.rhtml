@@ -1,0 +1,41 @@
+<h1>listing assignment logs</h1><br >
+<br />
+<% if !AssignmentLog.find(:all).empty? %>
+<table>
+  <tr>
+    <th>assignment</th>
+    <th>course</th>
+    <th>student</th>
+    <th>due on</th>
+    <th>submitted on</th>
+    <th>grade</th>
+    <th>action</th>
+  </tr>
+  
+<% for assignment_log in @assignment_logs %>
+  <tr>
+    <td><%=h assignment_log.assignment.name %></td>
+    <td><%=h assignment_log.course.full_name %></td>
+    <% if assignment_log.student_id %>
+      <td><%=h assignment_log.student.name_first_last %></td>
+    <% else %>
+      <td></td>
+    <% end %>
+    <td><%=h assignment_log.due_date.to_s(:date_month_year).downcase %></td>
+    <% if assignment_log.submitted_date %>
+      <td><%=h assignment_log.submitted_date.to_s(:date_month_year).downcase %></td>
+    <% else %>
+      <td></td>
+    <% end %>
+    <% if assignment_log.grade %>
+      <td><%=h assignment_log.grade %></td>
+    <% else %>
+      <td></td>
+    <% end %>
+    <td><%= link_to 'show', assignment_log_path(assignment_log) %>
+      <%= link_to 'edit', edit_assignment_log_path(assignment_log) %>
+      <%= link_to 'destroy', assignment_log_path(assignment_log), :confirm => 'are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>

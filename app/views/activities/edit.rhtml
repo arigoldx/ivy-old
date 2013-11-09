@@ -1,0 +1,9 @@
+<h1>editing activity</h1>
+
+<% form_for(:activity, :url => activity_path(@activity),
+:html => { :method => :put }) do |f| %>
+
+<p><b>name</b><br />          <%= f.text_field :name %></p>
+
+<p><%= submit_tag "update" %></p>
+<% end %>

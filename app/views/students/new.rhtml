@@ -1,0 +1,14 @@
+<h1>new student</h1>
+
+<% form_for(:student, :url => students_path) do |f| %>
+
+<p><b>first name</b><br /><%= f.text_field :first_name %></p>
+<p><b>middle name</b><br /><%= f.text_field :middle_name %></p>
+<p><b>last name</b><br /><%= f.text_field :last_name %></p>
+<p><b>nickname</b><br/><%= f.text_field :nickname %></p>
+<p><b>gender</b><br/><%= f.text_field :gender %></p>
+<p><b>course</b><br />
+<%= select (:course, :list, Course.list_all_names, :prompt => "unassigned") %>
+
+<p><%= submit_tag "create" %></p>
+<% end %>

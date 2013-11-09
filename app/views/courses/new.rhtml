@@ -1,0 +1,10 @@
+<h1>new course</h1>
+
+<% form_for(:course, :url => courses_path) do |f| %>
+
+<p><b>name</b><br /><%= f.text_field :name %></p>
+<p><b>section</b><br /><%= f.text_field :section %></p>
+<p><b>grade</b><br /><%= f.text_field :grade %></p>
+
+<p><%= submit_tag "create" %></p>
+<% end %>

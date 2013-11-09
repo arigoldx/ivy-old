@@ -1,0 +1,23 @@
+<p><h1>listing attendances
+    <%= image_tag("spinner.gif",
+        :align => "absmiddle",
+        :border => 0,
+        :id => "spinner",
+        :style =>"display: none;" ) %>
+
+</h1><br />
+<br /><br />
+filter on attendance type:
+<%= select_tag (:query, "<option>none selected</option>" + options_from_collection_for_select(AttendanceType.find(:all), "id", "name")) %>
+<br /><br />
+<%= observe_field 'query',
+         :update => 'table',
+         :before => "Element.show('spinner')",
+         :success => "Element.hide('spinner')",
+         :url => { :action => 'index' },
+         :method => 'get',
+         :with => 'query' %>
+<div id="table">
+  <%= render :partial => "list" %>
+</div>
+<br />

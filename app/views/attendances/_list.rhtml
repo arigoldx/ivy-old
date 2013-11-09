@@ -1,0 +1,29 @@
+<% if @total == 0 %>
+
+<p>no attendances found.. </p>
+
+<% else %>
+
+<table>
+  <thead>
+    <tr>
+      <td><%= link_to_sorter "first name", "first_name" %></td>
+      <td><%= link_to_sorter "last name", "last_name" %></td>
+      <td><%= link_to_sorter "course", "course" %></td>
+      <td><%= link_to_sorter "attendance type", "attendance_type"%></td>
+      <td><%= link_to_sorter "count", "count" %></td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @attendances.each do |a| %>
+  <tr class="<%= cycle("even","odd") %>">
+    <td><%=h a.first_name %></td>
+    <td><%=h a.last_name %></td>
+    <td><%=h a.course.full_name %></td>
+    <td><%=h a.attendance_type.name %></td>
+    <td><%=h a.count %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>

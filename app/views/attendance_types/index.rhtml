@@ -1,0 +1,15 @@
+<h1>listing attendance types</h1><br />
+<%= link_to '[new attendance_type]', new_attendance_type_path %>
+
+<% for attendance_type in @attendance_types %>
+<p>
+<%= link_to 'show', attendance_type_path(attendance_type) %>
+<%= link_to 'edit', edit_attendance_type_path(attendance_type) %>
+<%= link_to 'destroy', attendance_type_path(attendance_type),
+    :confirm => 'are you sure?', :method => :delete %>
+|
+<b><%=h attendance_type.name %></b>
+</p>
+<% end %>
+<br />
+

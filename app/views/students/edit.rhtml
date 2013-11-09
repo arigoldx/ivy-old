@@ -1,0 +1,13 @@
+<h1>editing student</h1>
+
+<% form_for(:student, :url => student_path(@student),
+:html => { :method => :put }) do |f| %>
+
+<p><b>first name</b><br />          <%= f.text_field :first_name %></p>
+<p><b>middle name</b><br />       <%= f.text_field :middle_name %></p>
+<p><b>last name</b><br />          <%= f.text_field :last_name %></p>
+<p><b>nickname</b><br />       <%= f.text_field :nickname %></p>
+<p><b>gender</b><br />       <%= f.text_field :gender %></p>
+
+<p><%= submit_tag "update" %></p>
+<% end %>

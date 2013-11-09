@@ -1,0 +1,9 @@
+<h1>new attendance_types</h1>
+
+<% form_for(:attendance_type, :url => attendance_types_path) do |f| %>
+<p>
+<b>attendance type name</b><br />
+<%= f.text_field :name %>
+</p>
+<p><%= submit_tag "create" %></p>
+<% end %>

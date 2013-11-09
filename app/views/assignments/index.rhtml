@@ -1,0 +1,9 @@
+<h1>listing assignments</h1><br />
+<%= link_to '[new assignment]', new_assignment_path %>
+<br /><br />
+<% for assignment in @assignments %>
+  <%= link_to 'show', assignment_path(assignment) %>
+  <%= link_to 'edit', edit_assignment_path(assignment) %>
+  <%= link_to 'destroy', assignment_path(assignment), :confirm => 'are you sure?', :method => :delete %> | 
+  <%=h assignment.name %><br />
+<% end %>

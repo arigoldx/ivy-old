@@ -1,0 +1,10 @@
+<h1>listing activities</h1><br />
+<%= link_to '[new activity]', new_activity_path %>
+<br /><br />
+<% for activity in @activities %>
+     <%= link_to 'show', activity_path(activity) %>
+     <%= link_to 'edit', edit_activity_path(activity) %>
+     <%= link_to 'destroy', activity_path(activity),
+         :confirm => 'are you sure?', :method => :delete %> |
+     <b><%=h activity.name %></b><br />
+<% end %>

@@ -1,0 +1,28 @@
+<h1>
+  <%= link_to_remote ("<",
+      :url => courses_path(:date => 1.day.ago(@date.to_time).to_date),
+      :method => 'get',
+      :update => 'lesson_list-day',
+      :before => "Element.show('spinner')",
+      :success => "Element.hide('spinner')") %>
+  <%= link_to_remote (">",
+      :url => courses_path(:date => 1.day.since(@date.to_time).to_date),
+      :method => 'get',
+      :update => 'lesson_list-day',
+      :before => "Element.show('spinner')",
+      :success => "Element.hide('spinner')") %>
+  <%= spinner %>
+  <br /><br />
+<%= @date.to_s(:day_month_date).downcase %><br />
+</h1>
+
+<br />
+
+<% if @total > 0 %>
+  <% for lesson in @lessons %>
+    <%= link_to lesson.course.name + lesson.course.section, lesson_path(lesson.course.id,lesson.id) %>
+    <%=h lesson.start_time.to_s(:hour_minute_ampm) %> to <%= lesson.end_time.to_s(:hour_minute_ampm) %><br />
+  <% end %>
+<% else %>
+  nothing going on today
+<% end %>

@@ -1,0 +1,9 @@
+<h2>editing assignment</h2><br />
+<%= link_to '[show]', assignment_path(@assignment) %><br />
+<br />
+<%= error_messages_for :assignment %>
+
+<% form_for(:assignment, :url => assignment_path(@assignment), :html => { :method => :put }) do |form| %>
+  <%= render :partial => "form", :locals => {:form => form} %>
+  <%= submit_tag "update" %>
+<% end %>

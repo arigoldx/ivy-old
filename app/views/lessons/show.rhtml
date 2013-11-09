@@ -1,0 +1,116 @@
+<% title(@course.full_name + ", " + @lesson.date.to_s(:day_month_date).downcase) %>
+
+<h2>
+  <div id="heading-date"><%= @lesson.date.to_s(:day_month_date).downcase %></div>
+  <%= link_to @course.full_name, course_path(@course) %>
+  <%= "{" + (@lesson_array.index(@lesson) + 1).ordinalize.to_s + " of " + @lesson_array.length.to_s + "}" %><br />
+  <%= @lesson.start_time.to_s(:hour_minute_ampm) %> to <%= @lesson.end_time.to_s(:hour_minute_ampm) %><br />
+  <%= link_to 'previous', lesson_path(@course,@lesson.previous) if @lesson.previous %>
+  <%= link_to 'next', lesson_path(@course,@lesson.next) if @lesson.next %>
+</h2>
+
+<!-- taking attendance -->
+<br /><br />
+<b><%= link_to_function "take attendance", "Element.toggle('take_attendance')" %></b>
+<div id="take_attendance" style="display:none">
+<% form_for :attendance,
+            :url => attendances_path do |form| %>
+<%= form.hidden_field :course_id, :value => @course.id %>
+<%= form.hidden_field :lesson_id, :value => @lesson.id %>
+<%= @attendance_types = AttendanceType.find(:all)
+    form.collection_select :attendance_type_id, @attendance_types, :id, :name %>
+<%= select_tag ("student[]", options_from_collection_for_select(@course.students.find(:all, :order => "first_name"), :id, :name_first_last), :multiple => "true", id => "student_ids" ) %>
+<%= submit_tag "mark attendance" %>
+<% end %>
+</div><br />
+
+<!-- attendances listing -->
+<% if !@lesson.attendances.empty? %>
+<b><%= link_to_function "attendance listing", "Element.toggle('attendance_listing')" %></b><br />
+<div id="attendance_listing" style="display:none">
+  <% for attendance in @lesson.attendances.find(:all, :order => "date DESC") %>
+  <%= link_to 'edit', edit_attendance_path(attendance) %>
+  <%= link_to 'delete', attendance_path(attendance), :confirm => 'Are you sure?', :method => :delete %> | 
+  <%=h Student.find(attendance.student_id).name_first_last %>
+  <%= AttendanceType.find(attendance.attendance_type_id).name %> on
+  <%=h attendance.created_at.to_s(:day_month_date).downcase %><br />
+  <% end %>
+<br /></div>
+<% end %>
+
+<!-- making plans -->
+<b><%= link_to_function "plan", "Element.toggle('plan')" %></b><br />
+<div id="plan" style="display:none">
+  <% form_for :courseplan,
+              :url => courseplans_path(@course) do |form| %>
+   <%= form.hidden_field :course_id, :value => @course.id %>
+   for lesson of,
+   <%= @lessons = @course.lessons.find(:all, :order => "date", :conditions => "date >= date(now())")
+       form.collection_select(:lesson_id, @lessons, :id, :date)  %><br />
+   <%= form.text_area :text, :rows => 18, :cols => 60 %>
+   <%= submit_tag "create courseplan" %>
+  <% end %>
+<br /></div>
+
+<!-- plan listing -->
+<% courseplans = @lesson.past_courseplans(@lesson.date, 2)
+   if !courseplans.empty? %>
+<b><%= link_to_function "plan listing", "Element.toggle('plan_listing')" %></b><br />
+<div id="plan_listing" style="display:none">
+  <% for courseplan in courseplans %>
+    <%= link_to 'edit', edit_courseplan_path(@course,courseplan) %> |
+    <%= link_to 'delete', courseplan_path(@course,courseplan), :confirm => 'are you sure?', :method => :delete %> |
+    <%=h courseplan.date.to_s(:day_month_date).downcase %>
+    <%= courseplan.text %>
+  <% end %>
+</div>
+<% end %>
+
+<!-- log activity -->
+<b><%= link_to_function "log activity", "Element.toggle('log_activity')" %></b>
+<div id="log_activity" style="display:none">
+<% form_for :activity_log,
+            :url => activity_logs_path do |form| %>
+  <%= form.hidden_field :course_id, :value => @course.id %>
+  <%= form.hidden_field :lesson_id, :value => @lesson.id %>
+  <%= select_tag ("activities[]", options_for_select(Activity.mapped_by_name), :multiple => "true", id => "activity_ids" ) %>
+  <%= submit_tag "log activity" %>
+<% end %>
+</div><br />
+
+<!-- activity listing -->
+<% activity_logs = @lesson.past_activity_logs(@lesson.date, 7)
+   if !activity_logs.empty? %>
+<b><%= link_to_function "activity listing", "Element.toggle('activity_listing')" %></b><br />
+<div id="activity_listing" style="display:none">
+  <% for activity_log in activity_logs %>
+    <%= link_to 'edit', edit_activity_log_path(activity_log) %> |
+    <%= link_to 'delete', activity_log_path(activity_log), :confirm => 'are you sure?', :method => :delete %> |
+    <%=h activity_log.activity.name + " :: " + activity_log.date.to_s(:day_month_date).downcase %><br />
+  <% end %>
+<br /></div>
+<% end %>
+
+<!-- take a note -->
+<b><%= link_to_function "take a note", "Element.toggle('take_a_note')" %></b><br />
+<div id="take_a_note" style="display:none">
+<% form_for :coursenote,
+            :url => coursenotes_path do |form| %>
+  <%= form.hidden_field :lesson_id, :value => @lesson.id %>
+  <%= form.text_area :text, :rows => 18, :cols => 60 %>
+  <%= submit_tag "create note" %>
+<% end %>
+</div>
+
+<!-- note listing -->
+<% if !@lesson.course.coursenotes.empty? %>
+<b><%= link_to_function "note listing", "Element.toggle('note_listing')" %></b><br />
+<div id="note_listing" style="display:none">
+<% for coursenote in @course.coursenotes.find(:all, :order => "date DESC") %>
+  <%= link_to 'edit', edit_coursenote_path(@course, coursenote) %> |
+  <%= link_to 'delete', coursenote_path(@course,coursenote), :confirm => 'are you sure?', :method => :delete %> |
+  <%=h coursenote.date.to_s(:day_month_date).downcase %>
+  <%= coursenote.text %>
+<% end %>
+</div>
+<% end %>

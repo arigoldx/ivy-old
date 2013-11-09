@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <td style="text-align: right">action</td>
+      <td style="text-align: center"><%= link_to_sorter "name", "name" %></td>
+      <td style="text-align: center"><%= link_to_sorter "due date", "due_date" %></td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @course.assignments.each do |assignment| %>
+  <tr class="<%= cycle("even","odd") %>">
+    <td><%= link_to 'show', assignment_log_path(assignment) %>
+      <%= link_to 'edit', edit_assignment_log_path(assignment) %>
+      <%= link_to 'destroy', assignment_log_path(assignment), :confirm => 'are you sure?', :method => :delete %></td>
+    <td><%=h assignment.name %></td>
+    <td><%=h assignment.due_date.to_s(:day_month_date).downcase %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+<h1>editing assignment log</h1>
+
+<%= error_messages_for :assignment_log %>
+
+<% form_for :assignment_log,
+            :url => assignment_log_path(@assignment_log),
+            :html => { :method => :put } do |form| %>
+  <p>
+    <b>assignment: </b>
+    <%= @assignments = Assignment.find(:all)
+	form.collection_select :assignment_id, @assignments, :id, :name %><br />
+  </p>
+
+  <p>
+    <b>student: </b><%= form.text_field :student_id %><br />
+  </p>
+
+  <p>
+    <b>date: </b><%= form.date_select :due_date %><br />
+  </p>
+
+  <p>
+    <%= submit_tag "update" %>
+  </p>
+<% end %>
+
+<%= link_to 'show', assignment_log_path(@assignment_log) %> |
+<%= link_to 'back', assignment_logs_path %>

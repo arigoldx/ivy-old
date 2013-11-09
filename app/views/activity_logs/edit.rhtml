@@ -1,0 +1,11 @@
+<h1>editing activity_log</h1>
+
+<%= error_messages_for :activity_log %>
+
+<% form_for(:activity_log, :url => activity_log_path(@activity_log), :html => { :method => :put }) do |form| %>
+  <p>for the lesson of <%=h @activity_log.lesson.date.to_s(:day_month_date).downcase %><br />
+  the activity was actually</p>
+  <p><%= @activities = Activity.find(:all, :order => "name")
+                           form.collection_select :activity_id, @activities, :id, :name %>
+  <%= submit_tag "update activity_log" %></p>
+<% end %>

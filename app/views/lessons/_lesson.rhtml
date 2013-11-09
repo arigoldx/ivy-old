@@ -1,0 +1,12 @@
+<%= error_messages_for 'lesson' %>
+<!--[form:lesson]-->
+<%= hidden_field 'lesson', 'course_id', :value => @course.id %>
+<p><label for="lesson_date">date</label><br/>
+  <%= date_select 'lesson', 'date'  %></p>
+<p><label for="lesson_start_time">start time</label><br />
+  <%= time_select 'lesson', 'start_time'  %></p>
+<p><label for="lesson_start_time">end time</label><br />
+  <%= time_select 'lesson', 'end_time'  %></p>
+<p><label for="lesson_room">room</label><br />
+  <%= text_field 'lesson', 'room', :value => 306 %></p>
+<!--[eoform:lesson]-->

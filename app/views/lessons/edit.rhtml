@@ -1,0 +1,19 @@
+<h2>edit lessons for <%= @lesson.course.name + @lesson.course.section %></h2><br />
+<% form_for(:lesson, :url => lesson_path(@course, @lesson), :html => { :method => :put }) do |f| %>
+   <% if !@group.empty? %>
+     <p><%= check_box_tag 'grouped' %> apply changes to all future lessons in group (listed below)</p>
+   <% end %>
+   <p><%= f.hidden_field 'id', :value => @lesson.id %></p>
+   <p><%= f.hidden_field 'course_id', :value => @course.id %></p>
+   <p>date <%= f.text_field 'date_string' %></p>
+   <p>start time <%= f.text_field 'start_time_string' %></p>
+   <p>end time <%= f.text_field 'end_time_string' %></p>
+   <p>room<br /><%= f.text_field 'room', :value => 306 %><br /></p>
+   <%= submit_tag "submit changes" %>
+<% end %>
+<% if !@group.empty? %>
+<hr />
+<b>group of related lesson(s)</b><br />
+<%= render :partial => "lesson_group", :collection => @group %>
+<br />
+<% end %>

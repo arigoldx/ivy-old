@@ -1,0 +1,15 @@
+<div id="lesson_list-day">
+  <%= render :partial => "todays_lessons" %>
+</div>
+<br />
+<h1>courses</h1><br />
+[<%= link_to 'new course', new_course_path %>]<br /><br />
+<% for course in @courses %>
+   <%= link_to 'admin', course_path(course) %>
+   <%= link_to 'delete', course_path(course),
+       :confirm => 'are you sure? this will delete all associated activity logs, assignment logs, attendances, courseplans, coursenotes, and lessons..',
+       :method => :delete %> |
+   <%=h course.name + course.section %>
+   <br />
+<% end %>
+

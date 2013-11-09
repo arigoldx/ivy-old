@@ -1,0 +1,12 @@
+<h1><%= @student.complete_name %></h1><br />
+<%= link_to '[edit]', edit_student_path(@student) %>
+<%= link_to '[destroy]', student_path(@student),
+	    :confirm => 'are you sure?', :method => :delete %><br /><br />
+
+<h2>assignments</h2><br />
+<% for course in @student.courses %>
+  <h3><%= course.name %></h3>
+  <% for student_assignment in course.student_assignments.find_all_by_student_id(@student.id) %>
+  hi
+  <% end %>
+<% end %>

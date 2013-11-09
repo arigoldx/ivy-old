@@ -1,0 +1,12 @@
+<h2>name:</h2>
+<%= form.text_field :name %><br />
+<br />
+<h2>grading type:<%= form.select(:grading_type, grading_types_for_select, :selected => 2) %></h2><br />
+<b>min grade:</b>
+<%= form.text_field :min_grade, :size => 3 %>
+<b>max grade:</b>
+<%= form.text_field :max_grade, :size => 3 %><br />
+<br />
+<h2>description:</h2><br />
+<%= form.text_area :description %><br />
+<br />

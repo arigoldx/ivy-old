@@ -1,0 +1,51 @@
+<h1>new assignment for <%= link_to Course.find(params[:course_id]).full_name, course_path(params[:course_id]) %></h1><br />
+
+<%= error_messages_for :assignment_log %>
+<br />
+<h2><%= link_to_function "create multiple assignments per date", "Element.toggle('batch_create_date')" %></h2>
+<div id="batch_create_date" style="display:none">
+<% form_tag :action => 'batch_create' do %><br />
+   <b>assignment</b>
+   <%= select_tag 'assignment_id', options_from_collection_for_select(@assignments, :id, :name) %><br />
+   <br />
+   <b>due dates</b>
+<% end %>
+</div><br />
+
+<h2><%= link_to_function "create multiple assignments per lesson", "Element.toggle('batch_create_lesson')" %></h2>
+<div id="batch_create_lesson" style="display:none">
+<% form_tag :action => 'batch_create' do %><br />
+   <b>assignment</b>
+   <%= select_tag 'assignment_id', options_from_collection_for_select(@assignments, :id, :name) %><br />
+   <br />
+   <b>due starting on lesson of: </b><br />
+   <b>due ending on lesson of: </b><br />
+<% end %>
+</div><br />
+
+<h2><%= link_to_function "create one assignment due at lesson", "Element.toggle('single_create_lesson')" %></h2>
+<div id="single_create_lesson" style="display:none">
+<% form_for :assignment_log,
+            :url => assignment_logs_path do |f| %>
+    <%= f.hidden_field :course_id, :value => params[:course.id] %><br />
+    <b>assignment</b>
+    <%= f.collection_select :assignment_id, @assignments, :id, :name %><br />
+    <b>due on lesson of</b>
+    <%= f.collection_select :due_date, @course.future_lessons, :date, :date %> <br />
+    <%= submit_tag "create" %>
+<% end %>
+</div><br />
+
+
+<h2><%= link_to_function "create one assignment due at date", "Element.toggle('single_create_date')" %></h2>
+<div id="single_create_date" style="display:none">
+<% form_for :assignment_log,
+            :url => assignment_logs_path do |f| %>
+    <%= f.hidden_field :course_id, :value => params[:course.id] %><br />
+    <b>assignment</b>
+    <%= f.collection_select :assignment_id, @assignments, :id, :name %><br />
+    <b>due date</b>
+    <%= f.text_field 'due_date_string', :value => Date.today.to_s(:short) %> <br />
+    <%= submit_tag "create" %>
+<% end %>
+</div>

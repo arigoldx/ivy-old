@@ -1,0 +1,31 @@
+<% if @total == 0 %>
+   <p>no students found.. </p>
+<% else %>
+   <p> number of students found: <%= @total %></p>
+   <p>
+     <% if @students_pages.page_count > 1 %>
+     page :
+     <%= pagination_links_remote @students_pages %>
+     <% end %>
+   </p>
+<table>
+  <thead>
+    <tr>
+      <td><%= link_to_sorter "first_name", "first_name" %></td>
+      <td><%= link_to_sorter "last_name", "last_name" %></td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @students.each do |s| %>
+  <tr class="<%= cycle("even","odd") %>">
+    <td><%=h s.first_name %></td>
+    <td><%=h s.last_name %></td>
+    <td><%= link_to 'show', student_path(s) %></td>
+    <td><%= link_to 'edit', edit_student_path(s) %></td>
+    <td><%= link_to 'destroy', student_path(s),
+	    :confirm => 'are you sure?', :method => :delete %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>

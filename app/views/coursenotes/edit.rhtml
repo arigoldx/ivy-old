@@ -1,0 +1,7 @@
+<h2>edit <%= @course.name + @course.section %> coursenote of <%= @coursenote.date.strftime( "%A, %B %d" ).downcase %></h2>
+<% form_for :coursenote,
+            :url => coursenote_path,
+            :html => { :method => :put } do |form| %>
+<%= form.text_area :text, :rows => 20, :cols => 60 %>
+<%= submit_tag "submit changes" %>
+<% end %>

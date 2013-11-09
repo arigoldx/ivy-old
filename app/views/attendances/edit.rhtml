@@ -1,0 +1,13 @@
+<h1>editing attendance</h1>
+
+<%= error_messages_for :attendance %>
+
+<% form_for(:attendance, :url => attendance_path(@attendance), :html => { :method => :put }) do |form| %>
+    <p>on <%=h @attendance.date.strftime( "%A, %B %d").downcase %>,
+    during <%=h @attendance.course.name + @attendance.course.section %><br />
+    <b><%=h @attendance.student.first_name + " " + @attendance.student.last_name %></b>
+    should have been marked as</p>
+    <%= @attendance_types = AttendanceType.find(:all)
+	form.collection_select :attendance_type_id, @attendance_types, :id, :name %>
+    <%= submit_tag "Update" %>
+<% end %>
