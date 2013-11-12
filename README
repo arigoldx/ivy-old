@@ -1,3 +1,14 @@
 This is ivy education, a teaching tool and curriculum development.
 
-It used to be on rubyforge.org but I'm just moving it to git.  Hence the sparse README.
+ivy was written under ruby-1.9.3-p194 which makes it kinda old but the code's
+strong and the ideas sound.
+
+One of these days when the need arises, I'll update it.  Maybe into a JavaScript
+framework - switching framework's is in it's history as it was originally
+written in PHP but I had been reading about Rails and MVC so I switched from my
+unorganized bunch of files to the nice lil' boxes of RoR.  (of course I was
+probably just caught up in the hype and didn't know of any MVC
+framworks in PHP).
+
+Originally hosted at ivy.rubyforge.org but due to problems at rubyforge, I
+brought it over to github.
