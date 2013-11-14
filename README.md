@@ -51,7 +51,7 @@ upgrade. Here is what I had to setup to get things working:
 >
 > rails: 1.2.3
 >
-> ivy: get it here --> https://github.com/arigoldx/ivy
+> ivy: get it here
 
 Without typing out a lesson on how to use Rails, basically, you get
 mysql setup and running. Then you edit the config/database.yml file in
