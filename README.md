@@ -46,8 +46,11 @@ getting everything running and then, once you're all cooking,
 upgrade. Here is what I had to setup to get things working:
 
 > mysql: mysql Ver 14.14 Distrib 5.5.15, for osx10.6 (i386) using readline 5.1
+>
 > ruby: ruby 1.8.7 (2010-01-10 patchlevel 249) [universal-darwin10.0]
+>
 > rails: 1.2.3
+>
 > ivy: get it here --> https://github.com/arigoldx/ivy
 
 Without typing out a lesson on how to use Rails, basically, you get
