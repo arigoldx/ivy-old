@@ -10,25 +10,25 @@ Personal Background
 
 From about 2003 until 2008, I was a music teacher. I also happened to
 be a software developer so when I got frustrated with the problems of
-Blackboard & Firstclass (the educational software our school used) I
-wrote my own software. First in PHP and then in Rails. I'm not really
-sure why I switched from PHP to Rails.. probably because I like
-learning new things.
+Blackboard & Firstclass I wrote my own software. First in PHP and then
+in Rails. If I recall correctly, I made the switch because I was
+frustrated with how unorganized the PHP code was and I had recently
+heard about Ruby on Rails. Muuuuuch better.
 
 Overview
 --------
 
 Originally I wrote ivy to help with the logistics of teaching. It
 helped with attendance and note-taking. Then I added the ability to
-plan and schedule and incorporated the concept of 'activities'. This
-subtle change actually turned ivy into a curriculum development
-tool. I could scan backwards in time within a specific class as well
-as through the years, to help figure out what might work best for my
-current group of students.
+plan and schedule and incorporated the ability to track
+activities. This subtle change actually turned ivy into a curriculum
+development tool. I could scan backwards in time within a specific
+class as well as through the years, to help figure out what might work
+best for my current group of students.
 
 At this point, activities are represented simply as names although
-adding further descriptions and material requirements would be quite
-simple.
+adding further descriptions as well as what materials each activity
+require would be good.
 
 The basic idea is to log which activity or activities were used during
 class and to also take notes on the success of each class/activity. Of
@@ -69,17 +69,16 @@ putting what works before what you think the students need. You
 cannot, of course, teach someone something that they do not care to
 learn about. Not easily, at least. Those activities that are more
 successful will be selected for, those less gradually eliminated or
-changed. Kind of evolutionarily.
+changed. Kind of like evolution.
 
 Design Note
 -----------
 
-Just in case some of y'all are wondering, I thought I'd mention a
-thing about my design philosophy, specifically the UI. Basically this
-is how I look at things: the smaller and simpler the better. I'm
-talking from an energy standpoint. If the user has to upload all sorts
-of cute little gifs and other graphics and whatnot, it simply takes
-more energy. Sure, it might not be a lot, per person. But it adds
-up. And why use more energy if it's not really necessary? Soooo, all
-things & functionalities being equal, I'm actually trying to reduce
-the amounts of bytes sent across the internet.
+I believe that, in general, the smaller and simpler things are the
+better. Certainly from an energy-use standpoint. If the user has to
+upload all sorts of cute little gifs and other graphics and whatnot,
+it simply takes more energy. Sure, it might not be a lot, per
+person. But it adds up. And why use more energy if it's not really
+necessary? Soooo, all things & functionalities being equal, I'm
+actually trying to reduce the amounts of bytes sent across the
+internet with my design.
