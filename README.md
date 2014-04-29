@@ -2,8 +2,8 @@ Ivy Education
 =============
 
 [nb. While ivy was used daily both by myself and other teachers, I
-should stress that, in terms of the general public, ivy is Beta
-software.]
+should stress that, in terms of the general public, ivy is [beta
+software.](https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta)]
 
 Personal Background
 -------------------
