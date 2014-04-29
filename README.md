@@ -3,7 +3,7 @@ Ivy Education
 
 [nb. While ivy was used daily both by myself and other teachers, I
 should stress that, in terms of the general public, ivy is Beta
-software. It was developed using Agile methodologies.]
+software.]
 
 Personal Background
 -------------------
